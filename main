@@ -1,0 +1,81 @@
+import pygame
+import sys
+
+# Initialize pygame
+pygame.init()
+
+# Window setup
+WIDTH, HEIGHT = 800, 600
+win = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Simple 2D Platformer")
+
+# Colors
+WHITE = (255, 255, 255)
+BLUE = (0, 0, 255)
+RED = (255, 0, 0)
+
+# Player setup
+player = pygame.Rect(100, 500, 50, 50)
+player_vel_y = 0
+gravity = 0.5
+jump = -10
+on_ground = False
+
+# Enemy
+enemy = pygame.Rect(400, 500, 50, 50)
+
+# Ground
+ground = pygame.Rect(0, 550, WIDTH, 50)
+
+clock = pygame.time.Clock()
+
+def handle_player_movement(keys):
+    global player_vel_y, on_ground
+
+    if keys[pygame.K_LEFT]:
+        player.x -= 5
+    if keys[pygame.K_RIGHT]:
+        player.x += 5
+    if keys[pygame.K_SPACE] and on_ground:
+        player_vel_y = jump
+        on_ground = False
+
+def apply_gravity():
+    global player_vel_y, on_ground
+    player.y += player_vel_y
+    player_vel_y += gravity
+
+    if player.colliderect(ground):
+        player.y = ground.y - player.height
+        player_vel_y = 0
+        on_ground = True
+
+def check_collision():
+    if player.colliderect(enemy):
+        print("Game Over")
+        pygame.quit()
+        sys.exit()
+
+# Game loop
+running = True
+while running:
+    clock.tick(60)
+    win.fill(WHITE)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+    handle_player_movement(keys)
+    apply_gravity()
+    check_collision()
+
+    # Draw everything
+    pygame.draw.rect(win, BLUE, player)
+    pygame.draw.rect(win, RED, enemy)
+    pygame.draw.rect(win, (0, 255, 0), ground)
+
+    pygame.display.update()
+
+pygame.quit()
