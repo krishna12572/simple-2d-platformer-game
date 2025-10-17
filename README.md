@@ -28,7 +28,7 @@ The game features:
 
 This project helped us understand game mechanics, game loops, and simple collision logic while working under time pressure.
 
-[Back To The Top](#table-of-contents)
+
 
 ---
 
@@ -37,7 +37,7 @@ This project helped us understand game mechanics, game loops, and simple collisi
 - Python 3
 - Pygame
 
-[Back To The Top](#table-of-contents)
+
 
 ---
 
