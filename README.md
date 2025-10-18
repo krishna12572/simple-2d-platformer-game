@@ -1,7 +1,5 @@
 # 🕹️ Simple 2D Platformer Game
 
-Project Image  
-*Add your project screenshot or GIF here*
 
 ---
 
