@@ -7,9 +7,7 @@
 - [Description](#description)
 - [Technologies](#technologies)
 - [How To Use](#how-to-use)
-- [License](#license)
-- [Author Info](#author-info)
-
+-
 ---
 
 ## Description
